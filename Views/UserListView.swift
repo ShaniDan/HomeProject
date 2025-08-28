@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct UserListView: View {
+    
+    @StateObject private var viewModel = UserViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        List(viewModel.users) { user in
+            Text(user.name)
+            
+        }
+        .task {
+            await viewModel.fetchUsers()
+        }
     }
 }
 
