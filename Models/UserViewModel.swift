@@ -13,7 +13,6 @@ final class UserViewModel: ObservableObject {
     @Published var users: [UserModel] = []
     
     func fetchUsers() async {
-        // guard let needs to be inside the func and use async because
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/users") else { return }
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
