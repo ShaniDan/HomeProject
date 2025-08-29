@@ -36,3 +36,16 @@ struct CompanyModel: Codable {
     let catchPhrase: String
     let bs: String
 }
+
+struct ToDosModel: Codable, Identifiable {
+    let userId: Int
+    let id: Int
+    let title: String
+    let completed: Bool
+}
+
+struct AlbumModel: Codable, Identifiable {
+    let userId: Int
+    let id: Int
+    let title: String
+}

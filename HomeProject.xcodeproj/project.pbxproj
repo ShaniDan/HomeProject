@@ -14,6 +14,8 @@
 		25D02DCB2E60F570003F2E42 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D02DCA2E60F570003F2E42 /* UserDetailView.swift */; };
 		25D02DCD2E60F597003F2E42 /* ToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D02DCC2E60F597003F2E42 /* ToDoListView.swift */; };
 		25D02DCF2E60F5A7003F2E42 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D02DCE2E60F5A7003F2E42 /* AlbumView.swift */; };
+		25D02DD12E622C2B003F2E42 /* ToDoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D02DD02E622C2B003F2E42 /* ToDoViewModel.swift */; };
+		25D02DD32E623B24003F2E42 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D02DD22E623B24003F2E42 /* AlbumViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		25D02DCA2E60F570003F2E42 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		25D02DCC2E60F597003F2E42 /* ToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListView.swift; sourceTree = "<group>"; };
 		25D02DCE2E60F5A7003F2E42 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
+		25D02DD02E622C2B003F2E42 /* ToDoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewModel.swift; sourceTree = "<group>"; };
+		25D02DD22E623B24003F2E42 /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -70,6 +74,8 @@
 			children = (
 				25D02DC42E60F52F003F2E42 /* UserModel.swift */,
 				25D02DC62E60F54A003F2E42 /* UserViewModel.swift */,
+				25D02DD02E622C2B003F2E42 /* ToDoViewModel.swift */,
+				25D02DD22E623B24003F2E42 /* AlbumViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -159,12 +165,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25D02DD12E622C2B003F2E42 /* ToDoViewModel.swift in Sources */,
 				25D02DC92E60F55D003F2E42 /* UserListView.swift in Sources */,
 				25D02DCD2E60F597003F2E42 /* ToDoListView.swift in Sources */,
 				25D02DCF2E60F5A7003F2E42 /* AlbumView.swift in Sources */,
 				25D02DC52E60F52F003F2E42 /* UserModel.swift in Sources */,
 				25D02DCB2E60F570003F2E42 /* UserDetailView.swift in Sources */,
 				25D02DC72E60F54A003F2E42 /* UserViewModel.swift in Sources */,
+				25D02DD32E623B24003F2E42 /* AlbumViewModel.swift in Sources */,
 				25D02DB62E60F045003F2E42 /* HomeProjectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

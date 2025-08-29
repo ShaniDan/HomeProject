@@ -13,12 +13,18 @@ struct UserListView: View {
     
     var body: some View {
         
-        List(viewModel.users) { user in
-            Text(user.name)
-            
-        }
-        .task {
-            await viewModel.fetchUsers()
+        NavigationStack {
+            List(viewModel.users) { user in
+                NavigationLink(destination: UserDetailView(user: user))
+                 {
+                    Text(user.name)
+                    
+                }
+            }
+            .navigationTitle("Name")
+            .task {
+                await viewModel.fetchUsers()
+            }
         }
     }
 }

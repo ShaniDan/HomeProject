@@ -22,4 +22,5 @@ final class UserViewModel: ObservableObject {
             print("Crashed: \(error)")
         }
     }
+    
 }
