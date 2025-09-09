@@ -27,14 +27,14 @@ final class ToDoViewModel: ObservableObject {
         toDos.filter { $0.userId == user.id}
     }
   // this is the update function but might need to look into it with Mikaela
-    func update() {
-        var updatedToDos: [ToDosModel] = []
-        for todo in toDos {
-            if todo.completed {
-                updatedToDos.append(todo)
-            }
-        }
-        toDos = updatedToDos
-    }
+//    func update() {
+//        var updatedToDos: [ToDosModel] = []
+//        for todo in toDos {
+//            if todo.completed {
+//                updatedToDos.append(todo)
+//            }
+//        }
+//        toDos = updatedToDos
+//    }
     
 }

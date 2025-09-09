@@ -16,7 +16,7 @@ struct ToDoListView: View {
         List(toDoListViewModel.todos(for: user)) { todo in
             Text(todo.id.description)
             Text(todo.title)
-            Image(systemName: todo.completed ? "checkmark.circle.fill" : "circle")
+//            Image(systemName: todo.completed ? "checkmark.circle.fill" : "circle")
         }
         .task {
             await toDoListViewModel.fetchToDos()

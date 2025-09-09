@@ -41,7 +41,8 @@ struct ToDosModel: Codable, Identifiable {
     let userId: Int
     let id: Int
     let title: String
-    let completed: Bool
+#warning("need to change it back to String")
+    let completed: Int
 }
 
 struct AlbumModel: Codable, Identifiable {
