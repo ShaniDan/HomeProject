@@ -64,9 +64,9 @@ final class UserViewModel: ObservableObject {
     @Published var users: [UserModel] = []
     
     func fetchUsers() async {
-        // Main thread
-        // This one is returning optional
+        // create url
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/users") else {
+            print("This URL doesn't work")
             return
         }
         do {
@@ -79,7 +79,7 @@ final class UserViewModel: ObservableObject {
             self.users = decoded
         } catch {
             // Must show the actual error
-            print("No more todos")
+            print("No user")
         }
     }
     

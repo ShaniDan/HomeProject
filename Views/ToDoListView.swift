@@ -13,10 +13,14 @@ struct ToDoListView: View {
     @StateObject private var toDoListViewModel = ToDoViewModel()
     
     var body: some View {
-        List(toDoListViewModel.todos(for: user)) { todo in
+        List {
+            if toDoListViewModel.todos(for: user).isEmpty {
+                Text("No Todos")
+            }
+        }
+        ForEach(toDoListViewModel.todos(for: user)) { todo in
             Text(todo.id.description)
             Text(todo.title)
-//            Image(systemName: todo.completed ? "checkmark.circle.fill" : "circle")
         }
         .task {
             await toDoListViewModel.fetchToDos()

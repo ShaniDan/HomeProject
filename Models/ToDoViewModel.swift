@@ -19,14 +19,14 @@ final class ToDoViewModel: ObservableObject {
             let decoded = try JSONDecoder().decode([ToDosModel].self, from: data)
             self.toDos = decoded
         } catch {
-            print("Crashed: \(error)")
+            print("No todos")
         }
     }
     
     func todos(for user: UserModel) -> [ToDosModel] {
         toDos.filter { $0.userId == user.id}
     }
-  // this is the update function but might need to look into it with Mikaela
+  // this is the update function but might need to look into it
 //    func update() {
 //        var updatedToDos: [ToDosModel] = []
 //        for todo in toDos {

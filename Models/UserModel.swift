@@ -41,7 +41,6 @@ struct ToDosModel: Codable, Identifiable {
     let userId: Int
     let id: Int
     let title: String
-#warning("need to change it back to String")
     let completed: Int
 }
 
