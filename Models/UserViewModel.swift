@@ -74,7 +74,6 @@ final class UserViewModel: ObservableObject {
             let (data, response) = try await URLSession.shared.data(from: url)
             
             // use response variable properly, for a real network request
-            // Main thread
             let decoded = try JSONDecoder().decode([UserModel].self, from: data)
             self.users = decoded
         } catch {

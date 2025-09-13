@@ -7,9 +7,17 @@
 
 import SwiftUI
 
+enum TodoFetchState {
+        
+    case initial, loading
+    case success(TodoCollection)
+    case error(Error)
+}
+
 struct ToDoListView: View {
     
     let user: UserModel
+    @State private var fetchState = TodoFetchState.initial
     @StateObject private var toDoListViewModel = ToDoViewModel()
     
     var body: some View {
