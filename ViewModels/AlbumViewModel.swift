@@ -16,10 +16,11 @@ final class AlbumViewModel: ObservableObject {
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/albums") else { return }
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
+            #warning("handle response")
             let decoded =  try JSONDecoder().decode([AlbumModel].self, from: data)
             self.albums = decoded
         } catch {
-            print("Crashed: \(error)")
+            print("bad response: \(error)")
         }
     }
     func album(for user: UserModel) -> [AlbumModel] {

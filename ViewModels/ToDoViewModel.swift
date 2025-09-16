@@ -16,6 +16,7 @@ final class ToDoViewModel: ObservableObject {
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/todos") else { return }
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
+            #warning("Handle response")
             let decoded = try JSONDecoder().decode([ToDosModel].self, from: data)
             self.toDos = decoded
         } catch {

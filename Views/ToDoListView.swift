@@ -10,7 +10,7 @@ import SwiftUI
 enum TodoFetchState {
         
     case initial, loading
-    case success(TodoCollection)
+//    case success(TodoCollection)
     case error(Error)
 }
 

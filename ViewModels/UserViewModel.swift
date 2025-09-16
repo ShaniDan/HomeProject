@@ -9,9 +9,9 @@ import Foundation
 
 /* MARK: Understanding Actor, MainActor
         - Actors are a concurrency primitive that help manage shared mutable state safely.
-        - Actors are as similar to classes but the difference is they automatically handle thread safety.
+        - Actors are as similar to classes but the difference is they automatically handle thread safety. Need to check if it's correct fully or not.
         - @MainActor is used in the Main thread, all UI updates must run on the main thread.
-        - Background work (network calls, database, heavy calculations should also run on the main thread)
+        - Background work (network calls, database, heavy calculations should also run on the main thread) - network calls don't happen on the Main thread
         - When the background work finishes, you switch back to the main thread to update the UI.
  
  Example code:
@@ -19,7 +19,7 @@ import Foundation
  Wrong Way:
  
  // This runs on the main thread by default
- 
+ // single threaded
  func fetchData() {
      let url = URL(string: "https://example.com/data.json")!
      let data = try! Data(contentsOf: url) // 🚨 blocks main thread
@@ -27,7 +27,7 @@ import Foundation
  }
  
  Right Way:
- 
+ // Old way
  func fetchData() {
      DispatchQueue.global(qos: .background).async {
          let url = URL(string: "https://example.com/data.json")!
@@ -43,14 +43,13 @@ import Foundation
      }
  }
  
- Swift Concurrency (asyn/await)
- 
+ Swift Concurrency (async/await)
+ // New way
  func fetchData() async {
      do {
          let url = URL(string: "https://example.com/data.json")!
          let (data, _) = try await URLSession.shared.data(from: url)
          
-         // Already resumes on the main thread if called from @MainActor context
          label.text = "Downloaded \(data.count) bytes"
      } catch {
          print("Error: \(error)")
@@ -60,7 +59,8 @@ import Foundation
 @MainActor
 
 final class UserViewModel: ObservableObject {
-    
+    // marks a property inside an ObservableObject so SwiftUI automatically updates any views observing it when the value changes
+    // Further @StateObject is used in aview to create and own an instance of that ObservableObject (with its @Published properties), so the view can react to changes
     @Published var users: [UserModel] = []
     
     func fetchUsers() async {
@@ -73,9 +73,39 @@ final class UserViewModel: ObservableObject {
             //network request
             let (data, response) = try await URLSession.shared.data(from: url)
             
+//            let mikaela = "traveling"
+//            
+//            guard mikaela == "home" else {
+//                // this is if it's not true
+//                break
+//            }
+//            
+//            asdf: if mikaela == "conference" {
+//                // this is if it's true
+//            } else {
+//                break asdf
+//            }
+            
+            
+            
             // use response variable properly, for a real network request
-            let decoded = try JSONDecoder().decode([UserModel].self, from: data)
-            self.users = decoded
+            guard let httpResponse = response as? HTTPURLResponse else {
+//                print("No HTTP response")
+                return
+            }
+            
+            let statusCode = httpResponse.statusCode
+            
+            if statusCode == 200 {
+                let decoded = try JSONDecoder().decode([UserModel].self, from: data)
+                self.users = decoded
+            } else if statusCode == 404 {
+                // show error to user
+            } else {
+                
+            }
+            
+           
         } catch {
             // Must show the actual error
             print("No user")
