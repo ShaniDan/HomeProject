@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AlbumView: View {
     
-    let user: UserModel
+    let user: User
     
     // MARK: @StateObject private var viewModel: AlbumViewModel - Only declares the property. It says this view owns a StateObject of type AlbumViewModel but it's not creating it here. The actual AlbumViewModel needs to be passed from outside (usually via the view's initializer)
     
@@ -29,5 +29,5 @@ struct AlbumView: View {
 }
 
 #Preview {
-    AlbumView(user: UserModel(id: 0, name: "test1", username: "test2", email: "test3@gmail.com", address: AddressModel(street: "1", suite: "2", city: "3", zipcode: "3", geo: GeoModel(lat: "1", lng: "2")), phone: "123", website: "www.some.com", company: CompanyModel(name: "some", catchPhrase: "some2", bs: "some3")))
+    AlbumView(user: User(id: 0, name: "test1", username: "test2", email: "test3@gmail.com", address: Address(street: "1", suite: "2", city: "3", zipcode: "3", geo: Geo(lat: "1", lng: "2")), phone: "123", website: "www.some.com", company: Company(name: "some", catchPhrase: "some2", bs: "some3")))
 }

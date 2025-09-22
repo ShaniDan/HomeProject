@@ -60,8 +60,8 @@ import Foundation
 
 final class UserViewModel: ObservableObject {
     // marks a property inside an ObservableObject so SwiftUI automatically updates any views observing it when the value changes
-    // Further @StateObject is used in aview to create and own an instance of that ObservableObject (with its @Published properties), so the view can react to changes
-    @Published var users: [UserModel] = []
+    // Further @StateObject is used in a view to create and own an instance of that ObservableObject (with its @Published properties), so the view can react to changes
+    @Published var users: [User] = []
     
     func fetchUsers() async {
         // create url
@@ -72,23 +72,7 @@ final class UserViewModel: ObservableObject {
         do {
             //network request
             let (data, response) = try await URLSession.shared.data(from: url)
-            
-//            let mikaela = "traveling"
-//            
-//            guard mikaela == "home" else {
-//                // this is if it's not true
-//                break
-//            }
-//            
-//            asdf: if mikaela == "conference" {
-//                // this is if it's true
-//            } else {
-//                break asdf
-//            }
-            
-            
-            
-            // use response variable properly, for a real network request
+                        
             guard let httpResponse = response as? HTTPURLResponse else {
 //                print("No HTTP response")
                 return
@@ -97,7 +81,7 @@ final class UserViewModel: ObservableObject {
             let statusCode = httpResponse.statusCode
             
             if statusCode == 200 {
-                let decoded = try JSONDecoder().decode([UserModel].self, from: data)
+                let decoded = try JSONDecoder().decode([User].self, from: data)
                 self.users = decoded
             } else if statusCode == 404 {
                 // show error to user
@@ -107,7 +91,6 @@ final class UserViewModel: ObservableObject {
             
            
         } catch {
-            // Must show the actual error
             print("No user")
         }
     }

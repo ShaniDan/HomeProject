@@ -6,7 +6,7 @@
 //
 
 
-struct ToDosModel: Codable, Identifiable {
+struct ToDo: Codable, Identifiable {
     let userId: Int
     let id: Int
     let title: String

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserListView: View {
     
+    // define a viewModel object
     @StateObject private var viewModel = UserViewModel()
     
     var body: some View {

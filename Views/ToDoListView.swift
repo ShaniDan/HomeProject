@@ -16,7 +16,7 @@ enum TodoFetchState {
 
 struct ToDoListView: View {
     
-    let user: UserModel
+    let user: User
     @State private var fetchState = TodoFetchState.initial
     @StateObject private var toDoListViewModel = ToDoViewModel()
     
@@ -37,5 +37,5 @@ struct ToDoListView: View {
 }
 
 #Preview {
-    ToDoListView(user: UserModel(id: 0, name: "test1", username: "test2", email: "test3@gmail.com", address: AddressModel(street: "1", suite: "2", city: "3", zipcode: "3", geo: GeoModel(lat: "1", lng: "2")), phone: "123", website: "www.some.com", company: CompanyModel(name: "some", catchPhrase: "some2", bs: "some3")))
+    ToDoListView(user: User(id: 0, name: "test1", username: "test2", email: "test3@gmail.com", address: Address(street: "1", suite: "2", city: "3", zipcode: "3", geo: Geo(lat: "1", lng: "2")), phone: "123", website: "www.some.com", company: Company(name: "some", catchPhrase: "some2", bs: "some3")))
 }

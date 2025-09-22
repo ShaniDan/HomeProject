@@ -10,20 +10,19 @@ import Foundation
 @MainActor
 
 final class AlbumViewModel: ObservableObject {
-    @Published var albums: [AlbumModel] = []
+    @Published var albums: [Album] = []
     
     func fetchAlbums() async {
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/albums") else { return }
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            #warning("handle response")
-            let decoded =  try JSONDecoder().decode([AlbumModel].self, from: data)
+            let decoded =  try JSONDecoder().decode([Album].self, from: data)
             self.albums = decoded
         } catch {
             print("bad response: \(error)")
         }
     }
-    func album(for user: UserModel) -> [AlbumModel] {
+    func album(for user: User) -> [Album] {
         albums.filter { $0.userId == user.id}
     }
 }
