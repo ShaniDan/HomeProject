@@ -13,7 +13,7 @@ struct AlbumView: View {
     
     // MARK: @StateObject private var viewModel: AlbumViewModel - Only declares the property. It says this view owns a StateObject of type AlbumViewModel but it's not creating it here. The actual AlbumViewModel needs to be passed from outside (usually via the view's initializer)
     
-    // this declares and initializes the StateObject at the same time. SwiftUI will create and AlbumViewModel() when the view is 1st built and it will manage its lifetime.
+    // this declares and initializes the StateObject at the same time. SwiftUI will create an AlbumViewModel() when the view is 1st built and it will manage its lifetime.
     
     @StateObject private var viewModel = AlbumViewModel()
     

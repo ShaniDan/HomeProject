@@ -5,6 +5,7 @@
 //  Created by Shakhnoza Mirabzalova on 9/16/25.
 //
 
+import Foundation
 
 struct Company: Codable {
     let name: String

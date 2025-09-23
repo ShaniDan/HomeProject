@@ -7,11 +7,14 @@
 
 import Foundation
 
+/// <#Description#>
 @MainActor
 
 final class ToDoViewModel: ObservableObject {
     @Published var toDos: [ToDo] = []
     
+    /// fetches the todos
+    ///
     func fetchToDos() async {
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/todos") else { return }
         do {
