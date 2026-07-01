@@ -16,16 +16,6 @@ import Foundation
  
  Example code:
  
- Wrong Way:
- 
- // This runs on the main thread by default
- // single threaded
- func fetchData() {
-     let url = URL(string: "https://example.com/data.json")!
-     let data = try! Data(contentsOf: url) // 🚨 blocks main thread
-     print("Data size: \(data.count)")
- }
- 
  Right Way:
  // Old way
  func fetchData() {
@@ -57,11 +47,11 @@ import Foundation
  }
  */
 @MainActor
-
-final class UserViewModel: ObservableObject {
+@Observable
+final class UserViewModel {
     // marks a property inside an ObservableObject so SwiftUI automatically updates any views observing it when the value changes
     // Further @StateObject is used in a view to create and own an instance of that ObservableObject (with its @Published properties), so the view can react to changes
-    @Published var users: [User] = []
+    var users: [User] = []
     
     func fetchUsers() async {
         // create url
@@ -72,9 +62,9 @@ final class UserViewModel: ObservableObject {
         do {
             //network request
             let (data, response) = try await URLSession.shared.data(from: url)
-                        
+            let decoded = try JSONDecoder().decode([User].self, from: data)
+            self.users = decoded
             guard let httpResponse = response as? HTTPURLResponse else {
-//                print("No HTTP response")
                 return
             }
             
@@ -88,8 +78,6 @@ final class UserViewModel: ObservableObject {
             } else {
                 
             }
-            
-           
         } catch {
             print("No user")
         }
